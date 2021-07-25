@@ -1,4 +1,4 @@
-# Todolistapp- Angular5+Firebase
+# Side Bet App- Angular5+Firebase
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
