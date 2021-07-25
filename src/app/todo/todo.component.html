@@ -1,0 +1,55 @@
+<p> works!</p>
+
+<div class="jumbotron" style="padding:45px 0px">
+  <h4 id="title" class="text-center">Side Betting App</h4>
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" #itemTitle placeholder="Game Name">
+  <input type="datetime-local" class="form-control" #itemSubtitle>
+  <select class="form-control" id="exampleFormControlSelect1">
+    <option value="">Select Wager</option>
+    <option>App Cider</option>
+    <option>Starbuck Frapp</option>
+    <option>Tealive</option>
+    <option>Satay Cheese</option>
+  </select>
+</div>
+<div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemSubtitle)">
+  <div id="add-new-game">
+    ADD NEW GAME
+    </div>
+  <i class="fa fa-plus-circle fa-2x"></i>
+</div>
+
+<div style="margin:5px">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Game</th>
+        <th scope="col">Wager</th>
+        <th scope="col">Winner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of toDoListArray;let i = index" [attr.data-index]="i">
+        <td>{{i + 1}}</td>
+        <td>{{item.subtitle.split('T')[0]}}</td>
+        <td>{{item.title}}</td>
+        <td>Apple Cider(1 Bottle)</td>
+        <td id="winner"> 
+              <span class="hover-cursor" [class.text-success]="item.alvinIsWon" (click)="alterCheckAlvin(item.$key, item.alvinIsWon)">
+                <i class="fa fa-lg" [ngClass]="item.alvinIsWon?'fa-check-circle-o':'fa-circle-thin'"></i>
+              </span> 
+              Alvin
+              <span class="hover-cursor" [class.text-success]="item.lawIsWon" (click)="alterCheckLaw(item.$key, item.lawIsWon)">
+                <i class="fa fa-lg" [ngClass]="item.lawIsWon?'fa-check-circle-o':'fa-circle-thin'"></i>
+              </span> 
+              Law
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,26 @@
+.jumbotron {
+    background-image: url("https://s3.amazonaws.com/si-fl-wp/wp-content/uploads/20160714085124/gaming_poker_cards.jpg");
+    height:200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: (10px);
+  }
+
+#title {
+margin: 30px;
+color: gold;
+font-size: 40px;
+}
+
+.fa-2x {
+    margin-left: 30%;
+}
+
+#add-new-game {
+
+    margin-left: 40%;
+}
+
+ul {
+    list-style-type: none;
+}
