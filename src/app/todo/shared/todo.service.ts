@@ -5,33 +5,37 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
   providedIn: 'root'
 })
 export class TodoService {
-  todolist: AngularFireList<any>;
+  gameList: AngularFireList<any>;
   constructor(private firebasedb: AngularFireDatabase) { }
 
-  getToDoList() {
-    this.todolist = this.firebasedb.list('chats');
-    return this.todolist;
+  getGameList() {
+    this.gameList = this.firebasedb.list('games');
+    return this.gameList;
   }
 
   
-  addTitle(title: string, subtitle: string) {
-    this.todolist.push({
-      title: title,
-      subtitle: subtitle,
-      alvinIsWon: false,
-      lawIsWon: false
+  addGame(gameName: string, dateTime: string, wager: string) {
+    this.gameList.push({
+      gameName: gameName,
+      dateTime: dateTime,
+      wager: wager,
+      winner: "",
+      status: 1
     });
   }
 
+
   checkOrUncheckTitleAlvin($key: string, flag: boolean) {
-    this.todolist.update($key, { alvinIsWon: flag });
+    this.gameList.update($key, { alvinIsWon: flag });
   }
 
   checkOrUncheckTitleLaw($key: string, flag: boolean) {
-    this.todolist.update($key, { lawIsWon: flag });
+    this.gameList.update($key, { lawIsWon: flag });
   }
 
-  removeTitle($key: string) {
-    this.todolist.remove($key);
+  //not in used
+  removeGame($key: string) {
+    this.gameList.remove($key);
   }
+
 }

@@ -1,21 +1,24 @@
 <p> works!</p>
+<button (click)="logout()">Logout</button>
 
 <div class="jumbotron" style="padding:45px 0px">
   <h4 id="title" class="text-center">Side Betting App</h4>
 </div>
 
 <div class="input-group">
-  <input type="text" class="form-control" #itemTitle placeholder="Game Name">
-  <input type="datetime-local" class="form-control" #itemSubtitle>
-  <select class="form-control" id="exampleFormControlSelect1">
+  <input type="text" class="form-control"placeholder="Game Name"  #gameName>
+  <input type="datetime-local" class="form-control" #dateTime>
+
+  <select class="form-control" id="exampleFormControlSelect1" #wager> 
     <option value="">Select Wager</option>
-    <option>App Cider</option>
-    <option>Starbuck Frapp</option>
-    <option>Tealive</option>
-    <option>Satay Cheese</option>
+    <option value="apple-cider">Apple Cider</option>
+    <option value="starbuck">Starbuck Frapp</option>
+    <option value="tealive">Tealive</option>
+    <option value="satay">Satay Cheese</option>
   </select>
 </div>
-<div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle, itemSubtitle)">
+
+<div class="input-group-addon hover-cursor" (click)="onAdd(gameName, dateTime, wager)">
   <div id="add-new-game">
     ADD NEW GAME
     </div>
@@ -29,26 +32,35 @@
         <th scope="col">#</th>
         <th scope="col">Date</th>
         <th scope="col">Game</th>
+        <th id="yes" scope="col">Yes</th>
+        <th id="no" scope="col">No</th>
+        <th id="draw" scope="col">Draw</th>
         <th scope="col">Wager</th>
         <th scope="col">Winner</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of toDoListArray;let i = index" [attr.data-index]="i">
+      <tr *ngFor="let item of GameListArray;let i = index" [attr.data-index]="i">
         <td>{{i + 1}}</td>
-        <td>{{item.subtitle.split('T')[0]}}</td>
-        <td>{{item.title}}</td>
-        <td>Apple Cider(1 Bottle)</td>
+        <td>{{item.dateTime.split('T')[0]}}</td>
+        <td>{{item.gameName}}</td>
+        <td>ALVIN</td>
+        <td>CELINE</td>
+        <td>LAW</td>
+        <td>{{item.wager}}</td>
         <td id="winner"> 
-              <span class="hover-cursor" [class.text-success]="item.alvinIsWon" (click)="alterCheckAlvin(item.$key, item.alvinIsWon)">
+          {{item.winner}}
+              <!-- <span class="hover-cursor" [class.text-success]="item.alvinIsWon" (click)="alterCheckAlvin(item.$key, item.alvinIsWon)">
                 <i class="fa fa-lg" [ngClass]="item.alvinIsWon?'fa-check-circle-o':'fa-circle-thin'"></i>
               </span> 
               Alvin
               <span class="hover-cursor" [class.text-success]="item.lawIsWon" (click)="alterCheckLaw(item.$key, item.lawIsWon)">
                 <i class="fa fa-lg" [ngClass]="item.lawIsWon?'fa-check-circle-o':'fa-circle-thin'"></i>
               </span> 
-              Law
-      </td>
+              Law -->
+          </td>
+          <td>{{item.status == 1? 'Open': 'Close'}}</td>
       </tr>
     </tbody>
   </table>

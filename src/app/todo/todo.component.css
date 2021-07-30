@@ -24,3 +24,15 @@ font-size: 40px;
 ul {
     list-style-type: none;
 }
+
+#yes{
+    color: rgb(17, 207, 17);
+}
+
+#no{
+    color: red
+}
+
+#draw{
+    color: rgb(151, 146, 146)
+}
