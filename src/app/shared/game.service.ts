@@ -4,7 +4,8 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService {
+
+export class GameService {
   gameList: AngularFireList<any>;
   constructor(private firebasedb: AngularFireDatabase) { }
 
@@ -13,7 +14,6 @@ export class TodoService {
     return this.gameList;
   }
 
-  
   addGame(gameName: string, dateTime: string, wager: string) {
     this.gameList.push({
       gameName: gameName,
@@ -23,7 +23,6 @@ export class TodoService {
       status: 1
     });
   }
-
 
   checkOrUncheckTitleAlvin($key: string, flag: boolean) {
     this.gameList.update($key, { alvinIsWon: flag });
@@ -38,4 +37,5 @@ export class TodoService {
     this.gameList.remove($key);
   }
 
+  //CRUD
 }

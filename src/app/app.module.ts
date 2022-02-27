@@ -8,14 +8,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { TodoComponent } from './todo/todo.component';
+import { GameComponent } from './game/game.component';
 import 'rxjs/add/observable/of';
-import { FirebaseService } from './todo/shared/firebase.service';
+import { AuthService } from './shared/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    GameComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +23,7 @@ import { FirebaseService } from './todo/shared/firebase.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule    
   ],
-  providers: [FirebaseService],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from './todo/shared/firebase.service';
+import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit{
   title = 'firebase-angular-auth';
   isSignedIn = false
-  constructor(public firebaseService : FirebaseService){}
+  constructor(public firebaseService : AuthService){}
   ngOnInit(){
     if(localStorage.getItem('user')!== null)
     this.isSignedIn= true

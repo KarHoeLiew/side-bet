@@ -1,21 +1,21 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { TodoService } from './shared/todo.service';
-import { FirebaseService } from './shared/firebase.service';
+import { GameService } from '../shared/game.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css'],
-  providers: [TodoService]
+  selector: 'app-game',
+  templateUrl: './game.component.html',
+  styleUrls: ['./game.component.css'],
+  providers: [GameService]
 })
-export class TodoComponent implements OnInit {
+export class GameComponent implements OnInit {
   GameListArray: any[];
   @Output() isLogout = new EventEmitter<void>();
 
-  constructor(private todoService: TodoService, public firebaseService: FirebaseService) { }
+  constructor(private gameService: GameService, public authService: AuthService) { }
 
   ngOnInit() {
-    this.todoService.getGameList().snapshotChanges()
+    this.gameService.getGameList().snapshotChanges()
       .subscribe(item => {
         this.GameListArray = [];
         item.forEach(element => {
@@ -31,27 +31,27 @@ export class TodoComponent implements OnInit {
   }
 
   onAdd(gameName, dateTime, wager) {
-    this.todoService.addGame(gameName.value, dateTime.value, wager.value);
+    this.gameService.addGame(gameName.value, dateTime.value, wager.value);
     gameName.value = null;
     dateTime.value = null;
     wager.value = "";
   }
 
   alterCheckAlvin($key: string, isChecked) {
-    this.todoService.checkOrUncheckTitleAlvin($key, !isChecked);
+    this.gameService.checkOrUncheckTitleAlvin($key, !isChecked);
   }
   
   alterCheckLaw($key: string, isChecked) {
-    this.todoService.checkOrUncheckTitleLaw($key, !isChecked);
+    this.gameService.checkOrUncheckTitleLaw($key, !isChecked);
   }
 
   //not yet used
   onDelete($key: string) {
-    this.todoService.removeGame($key);
+    this.gameService.removeGame($key);
   }
 
   logout(){
-    this.firebaseService.logout()
+    this.authService.logout()
     this.isLogout.emit()
   }
 
